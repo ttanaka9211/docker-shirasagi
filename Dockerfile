@@ -15,13 +15,15 @@ RUN apt-get update && \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && git clone -b stable https://github.com/shirasagi/shirasagi /shirasagi
+    && rm -rf /var/lib/apt/lists/* #\
+    && git clone --depth 1 https://github.com/shirasagi/shirasagi
 
-WORKDIR /shirasagi
+#WORKDIR /var/www/shirasagi
 
-COPY config .
+#COPY Gemfile Gemfile
+#COPY Gemfile.lock Gemfile.lock
 
-RUN gem install bundler
-RUN bundle install
+#RUN gem install bundler
+#RUN bundle install
 
+#COPY . /shirasagii
