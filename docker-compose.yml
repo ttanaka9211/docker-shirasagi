@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    #command: dockerize -wait tcp://db:27017 -timeout 20s bundle exec unicorn -p 3000 -c /shirasagi/config/unicorn.rb 
-    #command: dockerize -wait tcp://db:27017 -timeout 20s rake unicorn:start
+        #command: dockerize -wait tcp://db:27017 -timeout 20s bundle exec unicorn -p 3000 -c /shirasagi/config/unicorn.rb 
+    command: dockerize -wait tcp://db:27017 -timeout 20s rake unicorn:start
     tty: true #pry-byebugを使えるようにする
     stdin_open: true
     depends_on:
