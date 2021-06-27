@@ -13,7 +13,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/shirasagi:cached 
+      #- .:/shirasagi:cached 
       #ソケット通信用ファイルをnginxコンテナと共有
       - tmp-data:/shirasagi/tmp/sockets
       #画像データとかをnginxと共有

@@ -15,15 +15,14 @@ RUN apt-get update && \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* #\
-    && git clone --depth 1 https://github.com/shirasagi/shirasagi
+    && rm -rf /var/lib/apt/lists/* \ 
+    && git clone -b stable --depth 1 https://github.com/shirasagi/shirasagi /shirasagi
 
-#WORKDIR /var/www/shirasagi
-
+WORKDIR /shirasagi
 #COPY Gemfile Gemfile
 #COPY Gemfile.lock Gemfile.lock
+COPY config/unicorn.rb config/unicorn.rb
+COPY config/mongoid.yml config/mongoid.yml
+RUN gem install bundler
+RUN bundle install
 
-#RUN gem install bundler
-#RUN bundle install
-
-#COPY . /shirasagii
