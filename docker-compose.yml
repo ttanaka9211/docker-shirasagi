@@ -4,16 +4,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    #command: dockerize -wait tcp://db:27017 -timeout 20s bundle exec unicorn -p 3000 -c /shirasagi/config/unicorn.rb 
-    #command: dockerize -wait tcp://db:27017 -timeout 20s rake unicorn:start
+    #command: dockerize -wait tcp://db:27017 -timeout 20s bundle exec unicorn -p 3000 -c /shirasagi/config/unicorn.rb
+    command: dockerize -wait tcp://db:27017 -timeout 20s rake unicorn:start
     tty: true #pry-byebugを使えるようにする
     stdin_open: true
     depends_on:
-      - db 
+      - db
     ports:
       - "3000:3000"
     volumes:
-      - .:/shirasagi:cached 
+      - .:/shirasagi:cached
       #ソケット通信用ファイルをnginxコンテナと共有
       - tmp-data:/shirasagi/tmp/sockets
       #画像データとかをnginxと共有
@@ -21,7 +21,7 @@ services:
 
   db:
     image: mongo:3.4.5
-    ports: 
+    ports:
       - '27017:27017'
 
   nginx:
@@ -35,7 +35,7 @@ services:
       - tmp-data:/shirasagi/tmp/sockets
       - public-data:/shirasagi/public
     depends_on:
-      - web 
+      - web
 
 volumes:
   public-data:
