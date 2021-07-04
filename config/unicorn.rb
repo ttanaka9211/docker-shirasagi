@@ -4,6 +4,7 @@ timeout 120
 preload_app true
 
 root = File.expand_path("../../", __FILE__)
+listen "#{root}/tmp/sockets/unicorn.sock"
 pid "#{root}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.stderr.log"
 stdout_path "#{root}/log/unicorn.stdout.log"
