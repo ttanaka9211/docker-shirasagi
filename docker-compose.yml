@@ -13,17 +13,17 @@ services:
       - 3000:3000
     volumes:
       #ソケット通信用ファイルをnginxコンテナと共有
-      - ./tmp-data:/var/www/shirasagi/tmp/sockets
+      - ./data/tmp-data:/var/www/shirasagi/tmp/sockets
       #画像データとかをnginxと共有
-      - ./public-data:/var/www/shirasagi/public
-      #shirasagi共有
-      - ./src/public/sites:/var/www/shirasagi/public/sites
-      - ./src/private:/var/www/shirasagi/private
+      - ./data/public/sites:/var/www/shirasagi/public/sites
+      - ./data/private:/var/www/shirasagi/private
 
   db:
     image: mongo:3.4.5
     ports:
       - "27017:27017"
+    volumes: 
+      - ./data/mongodb:/data/db
 
   nginx:
     build:
@@ -32,9 +32,9 @@ services:
     ports:
       - 80:80
     restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
-    volumes:
-      - ./tmp-data:/var/www/shirasagi/tmp/sockets
-      - ./public-data:/var/www/shirasagi/public
+    #volumes:
+      #- ./data/tmp-data:/var/www/shirasagi/tmp/sockets
+      #- ./data/public:/var/www/shirasagi/public
     depends_on:
       - web
 #volumes:
