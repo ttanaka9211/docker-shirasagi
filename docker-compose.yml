@@ -22,7 +22,7 @@ services:
     image: mongo:3.4.5
     ports:
       - "27017:27017"
-    volumes: 
+    volumes:
       - ./data/mongodb:/data/db
 
   nginx:
@@ -32,9 +32,9 @@ services:
     ports:
       - 80:80
     restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
-    #volumes:
-      #- ./data/tmp-data:/var/www/shirasagi/tmp/sockets
-      #- ./data/public:/var/www/shirasagi/public
+    volumes:
+      - ./data/tmp-data:/var/www/shirasagi/tmp/sockets
+      - ./data/public/sites:/var/www/shirasagi/public/sites
     depends_on:
       - web
 #volumes:

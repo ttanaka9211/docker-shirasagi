@@ -10,3 +10,5 @@ create_sample:
 	docker-compose	exec	web	rake	db:seed name=demo site=www
 go_web:
 	docker-compose	exec	web	bash
+go_nginx:
+	docker-compose	exec	nginx	bash
