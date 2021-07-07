@@ -1,4 +1,4 @@
-FROM nginx:1.20.1
+FROM nginx:stable
 
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends\
@@ -6,7 +6,8 @@ RUN apt-get update && \
 	git \
 	vim \
 	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -f /etc/nginx/conf.d/*
 
 COPY config /etc/nginx/conf.d/
 

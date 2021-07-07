@@ -17,6 +17,7 @@ services:
       #画像データとかをnginxと共有
       - ./data/public/sites:/var/www/shirasagi/public/sites
       - ./data/private:/var/www/shirasagi/private
+      
 
   db:
     image: mongo:3.4.5
@@ -35,6 +36,7 @@ services:
     volumes:
       - ./data/tmp-data:/var/www/shirasagi/tmp/sockets
       - ./data/public/sites:/var/www/shirasagi/public/sites
+      - ./data/public/sites:/var/www/shirasagi/private
     depends_on:
       - web
 #volumes:
