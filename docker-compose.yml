@@ -15,7 +15,8 @@ services:
       #ソケット通信用ファイルをnginxコンテナと共有
       - ./data/tmp-data:/var/www/shirasagi/tmp/sockets
       #画像データとかをnginxと共有
-      - ./data/public/sites:/var/www/shirasagi/public/sites
+      #- ./data/public/sites:/var/www/shirasagi/public/sites
+      - ./data/public:/var/www/shirasagi/public/sites/w/w/w/_
       - ./data/private:/var/www/shirasagi/private
       
 
